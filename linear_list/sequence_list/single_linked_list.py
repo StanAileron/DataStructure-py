@@ -81,7 +81,7 @@ class LList(object):
     def del_last(self):
         """删除表中最后一个元素"""
         if self._head is None:
-            raise LinkedListUnderflow("list is null")
+            raise LinkedListUnderflow("list is null.")
 
         if self._head.next_ is None:
             del_item = self._head.elem
