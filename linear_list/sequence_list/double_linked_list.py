@@ -115,7 +115,7 @@ dl = DoubleLinkedList()
 for i in range(5, -1, -1):
     dl.prepend(i)
 print(len(dl))  # 6
-print(dl)   # [0, 1, 2, 3, 4, 5
+print(dl)   # [0, 1, 2, 3, 4, 5]
 
 for i in range(6, 10):
     dl.append(i)
