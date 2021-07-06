@@ -191,6 +191,25 @@ class LList(object):
                 exit_items.add(p.elem)
             p = p.next_
 
+    def sort(self):
+        """通过搬移数据的方式插入排序"""
+        if self._head is None or self._head.next_ is None:
+            return
+
+        crt = self._head.next_
+        while crt is not None:
+            x = crt.elem
+            p = self._head
+            while p is not crt and x >= p.elem:
+                p = p.next_
+            while p is not crt:
+                y = p.elem
+                p.elem = x
+                x = y  # 倒换大元素
+                p = p.next_
+            crt.elem = x
+            crt = crt.next_
+
     def __len__(self):
         return self.length()
 
