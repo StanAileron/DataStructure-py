@@ -42,7 +42,7 @@ class CyDoubleLinkList:
         if not isinstance(idx, int):
             raise TypeError("idx must be integer")
         if idx < 0 or idx > self.length():
-            raise IndexError("idx must greater >= 0 and <= list't length")
+            raise IndexError("idx must greater >= 0 and <= list's length")
 
         if idx == 0:
             self.prepend(elem)
@@ -90,7 +90,7 @@ class CyDoubleLinkList:
         if not isinstance(idx, int):
             raise TypeError("idx must be integer")
         if idx < 0 or idx >= self.length():
-            raise IndexError("idx must greater >= 0 and < list't length")
+            raise IndexError("idx must greater >= 0 and < list's length")
 
         if idx == 0:
             return self.del_first()
@@ -134,26 +134,26 @@ lst = CyDoubleLinkList()
 
 for i in range(5, -1, -1):
     lst.prepend(i)
-print(lst.length()) # 6
+print(lst.length())  # 6
 print(lst)  # [0, 1, 2, 3, 4, 5]
 
 for i in range(6, 10):
     lst.append(i)
-print(lst.length()) # 10
+print(lst.length())  # 10
 print(lst)  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 lst.insert(2.5, 3)
-print(lst.length()) # 11
+print(lst.length())  # 11
 print(lst)  # [0, 1, 2, 2.5, 3, 4, 5, 6, 7, 8, 9]
 
 print(lst.del_first())  # 0
-print(lst.length()) # 10
+print(lst.length())  # 10
 print(lst)  # [1, 2, 2.5, 3, 4, 5, 6, 7, 8, 9]
 
-print(lst.del_last())   # 9
-print(lst.length()) # 9
+print(lst.del_last())  # 9
+print(lst.length())  # 9
 print(lst)  # [1, 2, 2.5, 3, 4, 5, 6, 7, 8]
 
-print(lst.pop(2))   # 2.5
-print(lst.length()) # 8
+print(lst.pop(2))  # 2.5
+print(lst.length())  # 8
 print(lst)  # [1, 2, 3, 4, 5, 6, 7, 8]
