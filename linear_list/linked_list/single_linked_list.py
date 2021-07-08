@@ -39,6 +39,7 @@ class LList(object):
         """向表首插入元素"""
         p = LNode(elem, self._head)
         self._head = p
+        self._num += 1
 
     def append(self, elem):
         """向链表尾部插入元素"""
