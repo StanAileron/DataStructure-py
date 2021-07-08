@@ -47,22 +47,22 @@ class LList(object):
             p.next_ = LNode(elem)
         self._num += 1
 
-    def insert(self, elem, i: int):
+    def insert(self, elem, i_: int):
         """向链表指定位置插入元素"""
-        if not isinstance(i, int):
+        if not isinstance(i_, int):
             raise TypeError("i must be int")
-        if i < 0:
+        if i_ < 0:
             raise LinkedListUnderflow("i must greater than or equal to 0")
-        if i > self._num:
+        if i_ > self._num:
             raise LinkedListOverflow("i must less than or equal to list's length")
 
-        if i == 0:
+        if i_ == 0:
             self._head = LNode(elem, next_=self._head)
         else:
             p = self._head
-            while i - 1 > 0:
+            while i_ - 1 > 0:
                 p = p.next_
-                i = i - 1
+                i_ = i_ - 1
             p.next_ = LNode(elem, p.next_)
 
         self._num += 1
@@ -96,21 +96,21 @@ class LList(object):
         self._num -= 1
         return del_item
 
-    def pop(self, i: int):
+    def pop(self, i_: int):
         """删除指定位置的元素"""
-        if i < 0:
+        if i_ < 0:
             raise LinkedListUnderflow("i must greater than or equal to 0")
-        if i >= self._num:
+        if i_ >= self._num:
             raise LinkedListOverflow("i must be less than list's length")
 
-        if i == 0:
+        if i_ == 0:
             del_item = self._head.elem
             self._head = self._head.next_
         else:
             p = self._head
-            while i - 1 > 0:
+            while i_ - 1 > 0:
                 p = p.next_
-                i = i - 1
+                i_ = i_ - 1
             del_item = p.next_.elem
             p.next_ = p.next_.next_
 
@@ -131,12 +131,12 @@ class LList(object):
     def search(self, elem):
         """搜索元素elem的位置"""
         p = self._head
-        i = 0
+        i_ = 0
         while p is not None:
             if p.elem == elem:
-                return i
+                return i_
             p = p.next_
-            i += 1
+            i_ += 1
         return -1
 
     def reverse(self):
@@ -209,6 +209,27 @@ class LList(object):
                 p = p.next_
             crt.elem = x
             crt = crt.next_
+
+    def sort2(self):
+        """通过搬移节点的方式进行插入排序"""
+        if self._head is None or self._head.next_ is None:
+            return
+        p = self._head
+        while p is not None and p.next_ is not None:
+            k = None
+            q = self._head
+            while q is not p.next_ and p.next_.elem >= q.elem:
+                k = q
+                q = q.next_
+
+            if q is not p.next_:
+                node, p.next_ = p.next_, p.next_.next_
+                if k is None:
+                    node.next_, self._head = q, node
+                else:
+                    k.next_, node.next_ = node, q
+            else:
+                p = p.next_
 
     def __len__(self):
         return self.length()
@@ -293,7 +314,7 @@ print(llist)  # [3, 4, 5, 6, 7, 8, 9]
 
 llist.insert(1, 0)
 llist.insert(2, 1)
-llist.insert(10, 9)
+llist.insert(10, llist.length())
 print(llist.length())  # 10
 print(llist)  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -305,3 +326,6 @@ llist.reverse()
 print(llist)  # [10, 9, 8, 7, 6, 5, 4, 2, 1]
 
 print(llist.search(9))  # 1
+
+llist.sort2()
+print(llist)  # [1, 2, 4, 5, 6, 7, 8, 9, 10
