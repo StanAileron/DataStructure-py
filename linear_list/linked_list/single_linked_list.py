@@ -35,6 +35,11 @@ class LList(object):
         """返回链表的长度"""
         return self._num
 
+    def prepend(self, elem):
+        """向表首插入元素"""
+        p = LNode(elem, self._head)
+        self._head = p
+
     def append(self, elem):
         """向链表尾部插入元素"""
         if self._head is None:
@@ -286,46 +291,47 @@ class LList(object):
         return "".join(print_list)
 
 
-llist = LList()
-for i in range(1, 10):
-    llist.append(i)
-print(llist.length())  # 9
-print(llist)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+if __name__ == '__main__':
+    llist = LList()
+    for i in range(1, 10):
+        llist.append(i)
+    print(llist.length())  # 9
+    print(llist)  # [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-for i in range(1, 10):
-    llist.append(random.randint(0, i))
-print(llist.length())  # 18
-print(llist)  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 2, 2, 0, 3, 5, 5, 3, 6]
-llist.del_duplicate()
-print(llist.length())  # 10
-print(llist)  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+    for i in range(1, 10):
+        llist.append(random.randint(0, i))
+    print(llist.length())  # 18
+    print(llist)  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 2, 2, 0, 3, 5, 5, 3, 6]
+    llist.del_duplicate()
+    print(llist.length())  # 10
+    print(llist)  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
 
-print(llist.del_first())  # 1
-print(llist.length())  # 9
-print(llist)  # [2, 3, 4, 5, 6, 7, 8, 9, 0]
+    print(llist.del_first())  # 1
+    print(llist.length())  # 9
+    print(llist)  # [2, 3, 4, 5, 6, 7, 8, 9, 0]
 
-print(llist.del_last())  # 0
-print(llist.length())  # 8
-print(llist)  # [2, 3, 4, 5, 6, 7, 8, 9]
+    print(llist.del_last())  # 0
+    print(llist.length())  # 8
+    print(llist)  # [2, 3, 4, 5, 6, 7, 8, 9]
 
-print(llist.del_minimal())  # 2
-print(llist.length())  # 7
-print(llist)  # [3, 4, 5, 6, 7, 8, 9]
+    print(llist.del_minimal())  # 2
+    print(llist.length())  # 7
+    print(llist)  # [3, 4, 5, 6, 7, 8, 9]
 
-llist.insert(1, 0)
-llist.insert(2, 1)
-llist.insert(10, llist.length())
-print(llist.length())  # 10
-print(llist)  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    llist.insert(1, 0)
+    llist.insert(2, 1)
+    llist.insert(10, llist.length())
+    print(llist.length())  # 10
+    print(llist)  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-print(llist.pop(2))  # 3
-print(llist.length())  # 9
-print(llist)  # [1, 2, 4, 5, 6, 7, 8, 9, 10]
+    print(llist.pop(2))  # 3
+    print(llist.length())  # 9
+    print(llist)  # [1, 2, 4, 5, 6, 7, 8, 9, 10]
 
-llist.reverse()
-print(llist)  # [10, 9, 8, 7, 6, 5, 4, 2, 1]
+    llist.reverse()
+    print(llist)  # [10, 9, 8, 7, 6, 5, 4, 2, 1]
 
-print(llist.search(9))  # 1
+    print(llist.search(9))  # 1
 
-llist.sort2()
-print(llist)  # [1, 2, 4, 5, 6, 7, 8, 9, 10
+    llist.sort2()
+    print(llist)  # [1, 2, 4, 5, 6, 7, 8, 9, 10
