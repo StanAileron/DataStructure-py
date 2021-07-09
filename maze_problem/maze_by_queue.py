@@ -24,8 +24,10 @@ def print_path(opposite: dict, start: tuple, end: tuple):
     print("found path: ")
     pos = end
     while True:
-        print(f"{pos}<-- ", end="")
-        if pos == start:
+        if pos != start:
+            print(f"{pos}<-- ", end="")
+        else:
+            print(f"{pos}")
             return
         pos = opposite[pos]
 
@@ -74,4 +76,4 @@ if __name__ == "__main__":
     # found path:
     # (10, 12) < -- (9, 12) < -- (8, 12) < -- (7, 12) < -- (6, 12) < -- (5, 12) < -- (5, 11) < -- (5, 10) < -- (
     # 6, 10) < -- (6, 9) < -- (6, 8) < -- (6, 7) < -- (6, 6) < -- (6, 5) < -- (6, 4) < -- (6, 3) < -- (7, 3) < -- (
-    # 7, 2) < -- (7, 1) < -- (6, 1) < -- (5, 1) < -- (4, 1) < -- (3, 1) < -- (2, 1) < -- (1, 1) < --
+    # 7, 2) < -- (7, 1) < -- (6, 1) < -- (5, 1) < -- (4, 1) < -- (3, 1) < -- (2, 1) < -- (1, 1)
