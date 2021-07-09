@@ -46,8 +46,8 @@ class SQueue:
     def _extend(self):
         new_len = self._len * 2
         new_elems = [None] * new_len
-        for i in range(self._num):
-            new_elems[i] = self._elems[(i + self._head) % self._len]
+        for i_ in range(self._num):
+            new_elems[i_] = self._elems[(i_ + self._head) % self._len]
         self._elems = new_elems
         self._len = new_len
         self._head = 0
