@@ -30,6 +30,7 @@ def maze_solve(maze_: List[list], start: tuple, end: tuple):
             if maze_solve(maze_, next_pos, end):
                 print(start, end="<--")
                 return True
+    return False
 
 
 if __name__ == '__main__':
