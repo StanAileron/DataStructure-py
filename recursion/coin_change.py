@@ -22,7 +22,7 @@ def coins_change(coin_lst: List[int], change: int, change_coins: Dict[int, int] 
         cur_coins = 1 + coins_change(coin_lst, change-coin, change_coins)
         if cur_coins < min_coins:
             min_coins = cur_coins
-            change_coins[change] = min_coins
+            change_coins[change] = min_coins    # 保存当前金额对应的最小硬币数量
 
     return min_coins
 
