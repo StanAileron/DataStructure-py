@@ -15,9 +15,9 @@ def binary_search_recursion(alst: List, target):
     if alst[middle] == target:
         return True
     elif alst[middle] < target:
-        return binary_search(alst[middle + 1:len(alst)], target)
+        return binary_search(alst[middle + 1:], target)
     elif alst[middle] > target:
-        return binary_search(alst[0:middle], target)
+        return binary_search(alst[:middle], target)
 
 
 def binary_search(alst: List, target):
