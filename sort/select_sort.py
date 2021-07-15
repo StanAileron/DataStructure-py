@@ -2,7 +2,7 @@
 # -*-coding:UTF-8-*-
 
 
-"""选择排序"""
+"""实现选择排序"""
 from typing import List
 
 
