@@ -2,7 +2,7 @@
 # -*-coding:UTF-8-*-
 
 
-"""冒泡排序"""
+"""实现冒泡排序"""
 from typing import List
 
 
