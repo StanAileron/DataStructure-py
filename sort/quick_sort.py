@@ -22,11 +22,12 @@ def partition(alst: List, start: int, end: int) -> int:
 
     done = False
     while not done:
-        # alst[leftmart]与pivotvalue的比较运算符必须设置为小于等于符号，否则可能把与基准值相等的值放在了基准值的右边。
+        # 不能同时设置：alst[leftmark] < pivotvalue 和 alst[rightmark] > pivotvalue, 
+        # 否则会一直交换leftmart和rightmart处的值，陷入死循环。
+        # 因此，必须至少设置alst[leftmark] <= pivotvalue或者alst[rightmark] >= pivotvalue。
         while leftmark <= rightmark and alst[leftmark] <= pivotvalue:
             leftmark += 1
 
-        # alst[leftmart]与pivotvalue的比较运算符必须设置为大于符号，否则可能没有把与基准值相等的值放在基准值的左边。
         while leftmark <= rightmark and alst[rightmark] > pivotvalue:
             rightmark -= 1
 
