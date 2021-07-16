@@ -9,11 +9,13 @@ from typing import List
 def insert_sort(alst: List):
     for i in range(1, len(alst)):
         j = i - 1
+        elem = alst[i]
         while j >= 0:
-            if alst[j] > alst[i]:
-                alst[j], alst[i] = alst[i], alst[j]
+            if alst[j] > elem:
+                alst[i] = alst[j]
                 j, i = j - 1, i - 1
             else:
+                alst[i] = elem
                 break
 
 
