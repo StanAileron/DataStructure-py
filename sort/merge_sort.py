@@ -2,7 +2,9 @@
 # -*-coding:UTF-8-*-
 
 
-"""归并牌序（拆分列表、合并列表的示意图参见：merge_sort.png）"""
+"""归并牌序（拆分列表、合并列表的示意图参见：merge_sort.png）
+时间复杂度为O(nlog n)
+"""
 from typing import List
 
 
