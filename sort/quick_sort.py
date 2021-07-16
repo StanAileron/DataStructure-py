@@ -3,7 +3,7 @@
 
 
 """实现快速排序(为基准值寻找正确位置过程的示意图参加（注意，要从左右同时向中间逼近）)
-一. 为基准值为找正确的位置（所有小于等于基准值的元素放在基准值的左边，所有大于等于基准值的元素放在基准值的右边）：
+一. 为基准值为找正确的位置（所有小于等于基准值的元素放在基准值的左边，所有大于基准值的元素放在基准值的右边）：
     1. 将列表的第一个元素定义为基准值，设置left和right分别表示剩余元素的开头和结尾。
     2.  （1）比较left和基准值的大小，若基准值>=left，则left右移一位；否则，left止步。
         （2）然后比较right和基准值的大小，若基准值<=right，则right左移以为；否则，right止步，并且交换left元素和right元素的值。
@@ -23,13 +23,11 @@ def partition(alst: List, start: int, end: int) -> int:
     done = False
     while not done:
         # alst[leftmart]与pivotvalue的比较运算符必须设置为小于等于符号，否则可能把与基准值相等的值放在了基准值的右边。
-        # （？我根据实际推算，即使使用<符号也是可以排序成功的，但是如果使用了<符号则程序一直运行无法退出，原因暂且未知，待后续进行探索。。。。。。）
         while leftmark <= rightmark and alst[leftmark] <= pivotvalue:
             leftmark += 1
 
-        # alst[leftmart]与pivotvalue的比较运算符必须设置为大于等于符号，否则可能把与基准值相等的值放在了基准值的左边。（？）
-        # （？我根据实际推算，即使使用 > 符号也是可以排序成功的，但是如果使用了 > 符号则程序一直运行无法退出，原因暂且未知，待后续进行探索。。。。。。）
-        while leftmark <= rightmark and alst[rightmark] >= pivotvalue:
+        # alst[leftmart]与pivotvalue的比较运算符必须设置为大于符号，否则可能没有把与基准值相等的值放在基准值的左边。
+        while leftmark <= rightmark and alst[rightmark] > pivotvalue:
             rightmark -= 1
 
         # 这里一定是进行小于等于判断，否则有可能alst[rightmark]值大于als[start]值，造成基准值放置失败。
