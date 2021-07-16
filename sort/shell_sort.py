@@ -2,7 +2,9 @@
 # -*-coding:UTF-8-*-
 
 
-"""希尔排序"""
+"""希尔排序
+时间复杂度为O(n^1.5)
+"""
 from typing import List
 
 
