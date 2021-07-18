@@ -4,7 +4,7 @@
 from typing import List, Any
 
 
-# 使用嵌套列表表示二叉树
+# 使用嵌套的列表表示二叉树
 def binary_tree_by_list(r: Any):
     """创建树结构"""
     return [r, [], []]
