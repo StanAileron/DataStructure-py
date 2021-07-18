@@ -19,6 +19,7 @@ from tree import BinaryTree
 
 
 def parse_expression(exp_str: str) -> BinaryTree:
+    """将运算表达式解析成二叉树"""
     operators = ['+', '-', '*', '/']
     st = []
     current_tree = BinaryTree(None)
@@ -44,6 +45,7 @@ def parse_expression(exp_str: str) -> BinaryTree:
 
 
 def evaluate(parse_tree: BinaryTree):
+    """计算表达式二叉树"""
     # current_root_val = parse_tree.get_root_val()
     # if current_root_val not in ['+', '-', '*', '/']:
     #     return float(current_root_val)
@@ -89,6 +91,19 @@ def evaluate(parse_tree: BinaryTree):
         print(e)
 
 
+def print_parse_tree(tree: BinaryTree):
+    """将解析后的二叉树还原成运算表达式"""
+    if tree is None:
+        return
+    if tree.get_root_val() in ['+', '-', '*', '/']:
+        print('(', end='')
+    print_parse_tree(tree.get_left_child())
+    print(tree.get_root_val(), end='')
+    print_parse_tree(tree.get_right_child())
+    if tree.get_root_val() in ['+', '-', '*', '/']:
+        print(')', end='')
+
+
 if __name__ == '__main__':
     exp = "( ( 3.2 + 5.3 ) * ( 9.4 - 5.2 ) )"
     exp_tree = parse_expression(exp)
@@ -97,3 +112,5 @@ if __name__ == '__main__':
     print(exp_tree.get_right_child().get_root_val())  # -
 
     print(evaluate(exp_tree))  # 35.7
+
+    print_parse_tree(exp_tree)  # ((3.2+5.3)*(9.4-5.2))
