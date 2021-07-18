@@ -80,6 +80,41 @@ class BinaryTree:
     def set_root_val(self, root_val: Any):
         self._root = root_val
 
+    def preorder(self):
+        """先根序遍历"""
+        print(self._root, end=' ')
+        if self._left_child:
+            self._left_child.preorder()
+        if self._right_child:
+            self._right_child.preorder()
+
+    def postorder(self):
+        """后根序遍历"""
+        if self._left_child:
+            self._left_child.postorder()
+        if self._right_child:
+            self._right_child.postorder()
+
+        print(self._root, end=' ')
+
+
+def preorder(tree: BinaryTree):
+    """先根序遍历"""
+    if tree is None:
+        return
+    print(tree.get_root_val(), end=' ')
+    preorder(tree.get_left_child())
+    preorder(tree.get_right_child())
+
+
+def postorder(tree: BinaryTree):
+    """后根序遍历"""
+    if tree is None:
+        return
+    postorder(tree.get_left_child())
+    postorder(tree.get_right_child())
+    print(tree.get_root_val(), end=' ')
+
 
 if __name__ == '__main__':
     t1 = binary_tree_by_list('a')
@@ -106,3 +141,19 @@ if __name__ == '__main__':
 
     t2.set_root_val("hello")
     print(t2.get_root_val())  # hello
+
+    t3 = BinaryTree(1)
+    t3.insert_left(2)
+    t3.insert_right(3)
+    t3.get_left_child().insert_left(4)
+    t3.get_left_child().insert_right(5)
+    t3.get_right_child().insert_left(6)
+    t3.get_right_child().insert_right(7)
+
+    preorder(t3)  # 1 2 4 5 3 6 7
+    print()
+    t3.preorder()  # 1 2 4 5 3 6 7
+    print()
+    postorder(t3)  # 7 6 3 5 4 2 1
+    print()
+    t3.postorder()  # 7 6 3 5 4 2 1
