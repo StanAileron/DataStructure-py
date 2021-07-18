@@ -22,7 +22,7 @@ class PriorityQueue:
     def _build_heap(self):
         start_sift = len(self._elems) // 2
         for i_ in range(start_sift, -1, -1):
-            self._sift_down(self._elems[i_], i_)
+            self._sift_down(self._elems[i_], i_, len(self._elems))
 
     def is_empty(self):
         return self._elems == []
@@ -54,13 +54,13 @@ class PriorityQueue:
         dequeue_elem = self._elems[0]
         sift_elem = self._elems.pop()
         if not self.is_empty():
-            self._sift_down(sift_elem, 0)
+            self._sift_down(sift_elem, 0, len(self._elems))
 
         return dequeue_elem
 
-    def _sift_down(self, elem, start):
+    def _sift_down(self, elem, start, end):
         """执行向下筛选，让完全二叉树保持堆序"""
-        i_, end = start, len(self._elems)
+        i_ = start
         j = 2 * i_ + 1
 
         while j < end:
@@ -88,4 +88,4 @@ if __name__ == '__main__':
     while not pq.is_empty():
         print(pq.dequeue(), end=' ')
     print()
-    # -1 0 0 0 1 4 4 5 5 6
+    # -1 -1 -1 0 2 2 3 3 5 9
