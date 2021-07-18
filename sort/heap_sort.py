@@ -26,7 +26,7 @@ def heap_sort(alst: List):
     for i in range(sift_index, -1, -1):
         sift_down(alst[i], i, len(alst))
 
-    for i in range(len(alst) - 1, -1, -1):
+    for i in range(len(alst) - 1, 0, -1):
         sift_elem = alst[i]
         alst[i] = alst[0]
         sift_down(sift_elem, 0, i)
