@@ -97,6 +97,14 @@ class BinaryTree:
 
         print(self._root, end=' ')
 
+    def inorder(self):
+        """中跟序遍历"""
+        if self._left_child:
+            self._left_child.inorder()
+        print(self._root, end=' ')
+        if self._right_child:
+            self._right_child.inorder()
+
 
 def preorder(tree: BinaryTree):
     """先根序遍历"""
@@ -114,6 +122,15 @@ def postorder(tree: BinaryTree):
     postorder(tree.get_left_child())
     postorder(tree.get_right_child())
     print(tree.get_root_val(), end=' ')
+
+
+def inorder(tree: BinaryTree):
+    """中根序遍历"""
+    if tree is None:
+        return
+    inorder(tree.get_left_child())
+    print(tree.get_root_val(), end=' ')
+    inorder(tree.get_right_child())
 
 
 if __name__ == '__main__':
@@ -157,3 +174,7 @@ if __name__ == '__main__':
     postorder(t3)  # 7 6 3 5 4 2 1
     print()
     t3.postorder()  # 7 6 3 5 4 2 1
+    print()
+    inorder(t3)  # 4 2 5 1 6 3 7
+    print()
+    t3.inorder()  # 4 2 5 1 6 3 7
