@@ -44,19 +44,43 @@ def parse_expression(exp_str: str) -> BinaryTree:
 
 
 def evaluate(parse_tree: BinaryTree):
+    # current_root_val = parse_tree.get_root_val()
+    # if current_root_val not in ['+', '-', '*', '/']:
+    #     return float(current_root_val)
+    #
+    # try:
+    #     if current_root_val == '+':
+    #         return operator.add(evaluate(parse_tree.get_left_child()), evaluate(parse_tree.get_right_child()))
+    #     elif current_root_val == '-':
+    #         return operator.sub(evaluate(parse_tree.get_left_child()), evaluate(parse_tree.get_right_child()))
+    #     elif current_root_val == '*':
+    #         return operator.mul(evaluate(parse_tree.get_left_child()), evaluate(parse_tree.get_right_child()))
+    #     elif current_root_val == '/':
+    #         return operator.truediv(evaluate(parse_tree.get_left_child()), evaluate(parse_tree.get_right_child()))
+    #     else:
+    #         raise ValueError("operand error")
+    # except ZeroDivisionError as e:
+    #     print("除数不能为零 ", e)
+    # except ValueError as e:
+    #     print(e)
+
+    # 使用类似后根序遍历的方式实现
     current_root_val = parse_tree.get_root_val()
     if current_root_val not in ['+', '-', '*', '/']:
         return float(current_root_val)
 
+    left_result = evaluate(parse_tree.get_left_child())
+    right_result = evaluate(parse_tree.get_right_child())
+
     try:
         if current_root_val == '+':
-            return operator.add(evaluate(parse_tree.get_left_child()), evaluate(parse_tree.get_right_child()))
+            return operator.add(left_result, right_result)
         elif current_root_val == '-':
-            return operator.sub(evaluate(parse_tree.get_left_child()), evaluate(parse_tree.get_right_child()))
+            return operator.sub(left_result, right_result)
         elif current_root_val == '*':
-            return operator.mul(evaluate(parse_tree.get_left_child()), evaluate(parse_tree.get_right_child()))
+            return operator.mul(left_result, right_result)
         elif current_root_val == '/':
-            return operator.truediv(evaluate(parse_tree.get_left_child()), evaluate(parse_tree.get_right_child()))
+            return operator.truediv(left_result, right_result)
         else:
             raise ValueError("operand error")
     except ZeroDivisionError as e:
