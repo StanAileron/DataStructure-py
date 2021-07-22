@@ -23,6 +23,7 @@ class TreeNode:
         self._left_child = left
         self._right_child = right
         self._parent = parent
+        self._balance_factor = 0
 
     @property
     def key(self):
@@ -63,6 +64,14 @@ class TreeNode:
     @right_child.setter
     def right_child(self, node: Optional["TreeNode"]):
         self._right_child = node
+
+    @property
+    def balance_factor(self) -> int:
+        return self._balance_factor
+
+    @balance_factor.setter
+    def balance_factor(self, new_factor: int):
+        self._balance_factor = new_factor
 
     def is_left_child(self) -> bool:
         return self._parent is not None and self._parent._left_child == self
