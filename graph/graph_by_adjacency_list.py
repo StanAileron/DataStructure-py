@@ -12,13 +12,37 @@ class Vertex:
         self._id = key
         self._color = "White"   # 标记当前顶点是否已被探查
         self._distance = 0      # 记录当前顶点与起始顶点的距离
-        self._pre_vertxt: Optional[Vertex] = None   # 记录当前顶点的前驱顶点
+        self._pre_vertex: Optional[Vertex] = None   # 记录当前顶点的前驱顶点
         self._connected_to: Optional[Dict["Vertex", int]] = {}
 
     @property
     def id(self) -> Any:
         """获取顶点的id"""
         return self._id
+
+    @property
+    def color(self) -> str:
+        return self._color
+
+    @color.setter
+    def color(self, new_color: str):
+        self._color = new_color
+
+    @property
+    def distance(self) -> int:
+        return self._distance
+
+    @distance.setter
+    def distance(self, new_distance: int):
+        self._distance = new_distance
+
+    @property
+    def pre_vertex(self) -> "Vertex":
+        return self._pre_vertex
+
+    @pre_vertex.setter
+    def pre_vertex(self, pre: "Vertex"):
+        self._pre_vertex = pre
 
     def add_neighbor(self, nbr: "Vertex", weight: int = 0):
         """建立当前顶点与顶点nbr的连接，并设置边的权重"""
