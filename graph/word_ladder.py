@@ -44,7 +44,7 @@ def build_graph(word_file: str) -> Graph:
 
 
 def bfs(g: Graph, start: str):
-    """宽度优先搜索"""
+    """宽度优先搜索(时间复杂度：O(V + E))"""
     start = g.get_vertex(start)
     start.color = "Gray"
     q = Queue()
