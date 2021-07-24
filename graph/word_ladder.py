@@ -16,7 +16,7 @@ from graph import Graph
 
 
 def build_graph(word_file: str) -> Graph:
-    """构建单词关系图"""
+    """构建单词关系图，示例图参见：单词关系图.jpg"""
     d: Dict[str, List[str]] = {}
     g = Graph()
     fp = open(word_file, 'r')
@@ -44,7 +44,7 @@ def build_graph(word_file: str) -> Graph:
 
 
 def bfs(g: Graph, start: str):
-    """宽度优先搜索(时间复杂度：O(V + E))"""
+    """宽度优先搜索(时间复杂度：O(V + E))，搜索过程参见示例图：词梯问题的宽度优先搜索.jpg"""
     start = g.get_vertex(start)
     start.color = "Gray"
     q = Queue()
