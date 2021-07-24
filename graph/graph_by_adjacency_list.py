@@ -10,6 +10,9 @@ class Vertex:
 
     def __init__(self, key: Any):
         self._id = key
+        self._color = "White"   # 标记当前顶点是否已被探查
+        self._distance = 0      # 记录当前顶点与起始顶点的距离
+        self._pre_vertxt: Optional[Vertex] = None   # 记录当前顶点的前驱顶点
         self._connected_to: Optional[Dict["Vertex", int]] = {}
 
     @property
