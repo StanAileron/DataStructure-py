@@ -37,7 +37,7 @@ def print_path(board: List[List[int]]):
 
 
 def find_next(board: List[List[int]], current_knight: Tuple[int, int], st: List[Tuple[int, int]]) -> bool:
-    """寻找下一步要探索的节点（下一个节点是其探索方向最少的节点）"""
+    """寻找下一步要探索的节点（可探索的节点的探索方向最少的节点）"""
     temp_lst = []
 
     for i in range(8):
