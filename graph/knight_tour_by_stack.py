@@ -7,7 +7,6 @@
         现在的问题是，在国际象棋棋盘上为骑士找到一条路径，
         使之可以经过棋盘的每个格子恰好一次，并返回路径参数的表。
 """
-import time
 from typing import List, Tuple
 
 DIRS = ((2, 1), (2, -1), (-2, 1), (-2, -1), (1, 2), (1, -2), (-1, 2), (-1, -2))
@@ -17,11 +16,11 @@ def mark(board: List[List[int]], pos: Tuple[int, int], steps: int):
     board[pos[0]][pos[1]] = steps
 
 
-def dismark(board: List[List[int]], pos: Tuple[int, int]):
+def dis_mark(board: List[List[int]], pos: Tuple[int, int]):
     board[pos[0]][pos[1]] = 0
 
 
-def passible(board: List[List[int]], pos: Tuple[int, int]) -> bool:
+def possible(board: List[List[int]], pos: Tuple[int, int]) -> bool:
     if pos[0] < 0 or pos[0] > 7:
         return False
     if pos[1] < 0 or pos[1] > 7:
@@ -43,10 +42,10 @@ def find_next(board: List[List[int]], current_knight: Tuple[int, int], st: List[
     for i in range(8):
         next_knight = (current_knight[0] + DIRS[i][0], current_knight[1] + DIRS[i][1])
         can_go = 0
-        if passible(board, next_knight):
+        if possible(board, next_knight):
             for j in range(8):
                 next_next_knight = (next_knight[0] + DIRS[j][0], next_knight[1] + DIRS[j][1])
-                if passible(board, next_next_knight):
+                if possible(board, next_next_knight):
                     can_go += 1
             temp_lst.append([next_knight, can_go])
 
@@ -76,7 +75,7 @@ def knight_tour(board: List[List[int]], start: Tuple[int, int]):
             continue
         else:
             current_steps -= 1
-            dismark(board, current_knight)
+            dis_mark(board, current_knight)
 
 
 if __name__ == '__main__':
