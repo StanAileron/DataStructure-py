@@ -7,6 +7,7 @@
         现在的问题是，在国际象棋棋盘上为骑士找到一条路径，
         使之可以经过棋盘的每个格子恰好一次，并返回路径参数的表。
 """
+import time
 from typing import List, Tuple
 
 DIRS = ((2, 1), (2, -1), (-2, 1), (-2, -1), (1, 2), (1, -2), (-1, 2), (-1, -2))
@@ -52,8 +53,8 @@ def find_next(board: List[List[int]], current_knight: Tuple[int, int], st: List[
     if len(temp_lst) == 0:
         return False
 
-    for next_knight in sorted(temp_lst, key=lambda item: item[1], reverse=True):
-        st.append(next_knight[0])
+    for next_knight, _ in sorted(temp_lst, key=lambda item: item[1], reverse=True):
+        st.append(next_knight)
 
     return True
 
@@ -80,6 +81,7 @@ def knight_tour(board: List[List[int]], start: Tuple[int, int]):
 
 if __name__ == '__main__':
     b = [[0 for _ in range(8)] for _ in range(8)]
+
     knight_tour(board=b, start=(0, 4))
 
     print("Board: ")
