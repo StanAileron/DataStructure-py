@@ -10,9 +10,10 @@ class Vertex:
 
     def __init__(self, key: Any):
         self._id = key
-        self._color = "White"   # 标记当前顶点是否已被探查
-        self._distance = 0      # 记录当前顶点与起始顶点的距离
-        self._pre_vertex: Optional[Vertex] = None   # 记录当前顶点的前驱顶点
+        self._color = "White"   # 标记当前顶点是否已被探查（用于词梯问题）
+        self._distance = 0      # 记录当前顶点与起始顶点的距离（用于词梯问题）
+        self._steps = 0         # 记录当前顶点的步数（用于骑士周游算法）
+        self._pre_vertex: Optional[Vertex] = None   # 记录当前顶点的前驱顶点（用于词梯问题）
         self._connected_to: Optional[Dict["Vertex", int]] = {}
 
     @property
@@ -43,6 +44,14 @@ class Vertex:
     @pre_vertex.setter
     def pre_vertex(self, pre: "Vertex"):
         self._pre_vertex = pre
+
+    @property
+    def steps(self) -> int:
+        return self._steps
+
+    @steps.setter
+    def steps(self, step: int):
+        self._steps = step
 
     def add_neighbor(self, nbr: "Vertex", weight: int = 0):
         """建立当前顶点与顶点nbr的连接，并设置边的权重"""
