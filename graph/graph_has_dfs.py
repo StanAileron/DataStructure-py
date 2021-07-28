@@ -20,6 +20,7 @@ class DFSGraph(Graph):
         self._time = 0  # 记录当前搜索的步数
 
     def dfs(self):
+        """时间复杂度为O(|V|+|E|)，其中V是顶点数量，E是边的数量"""
         # 颜色初始化
         for vertex in self:
             vertex.color = "White"
