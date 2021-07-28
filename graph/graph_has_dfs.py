@@ -32,7 +32,7 @@ class DFSGraph(Graph):
 
     def dfs_visit(self, start_vertex: Vertex):
         start_vertex.color = "Gray"
-        self._time += 1     # 当前搜索的步数
+        self._time += 1  # 当前搜索的步数
         start_vertex.discovery = self._time
 
         for next_vertex in start_vertex.get_connections():
@@ -44,4 +44,3 @@ class DFSGraph(Graph):
         start_vertex.color = "Black"
         self._time += 1
         start_vertex.finish = self._time
-
