@@ -10,10 +10,16 @@ class Vertex:
 
     def __init__(self, key: Any):
         self._id = key
-        self._color = "White"   # 标记当前顶点是否已被探查（用于词梯问题）
-        self._distance = 0      # 记录当前顶点与起始顶点的距离（用于词梯问题）
-        self._steps = 0         # 记录当前顶点的步数（用于骑士周游算法）
-        self._pre_vertex: Optional[Vertex] = None   # 记录当前顶点的前驱顶点（用于词梯问题）
+
+        self._color = "White"  # 标记当前顶点是否已被探查（White: 表示还没有进行探索，Gray：表示发现了这个顶点，Black：表示完成了对这个顶点的探索）
+        self._distance = 0  # 记录当前顶点与起始顶点的距离
+        self._pre_vertex: Optional[Vertex] = None  # 记录当前顶点的前驱顶点
+
+        self._steps = 0  # 记录当前顶点的对应的步数（用于骑士周游算法）
+
+        self._discovery = 0  # 记录在第几步访问到了这个顶点（用于带有通用dfs算法的图）
+        self._finish = 0  # 记录在第几步完成了对这个顶点的探索（用于带有通用dfs算法的图）
+
         self._connected_to: Optional[Dict["Vertex", int]] = {}
 
     @property
@@ -52,6 +58,22 @@ class Vertex:
     @steps.setter
     def steps(self, step: int):
         self._steps = step
+
+    @property
+    def discovery(self) -> int:
+        return self._discovery
+
+    @discovery.setter
+    def discovery(self, step: int):
+        self._discovery = step
+
+    @property
+    def finish(self) -> int:
+        return self._finish
+
+    @finish.setter
+    def finish(self, step: int):
+        self._finish = step
 
     def add_neighbor(self, nbr: "Vertex", weight: int = 0):
         """建立当前顶点与顶点nbr的连接，并设置边的权重"""
@@ -145,6 +167,3 @@ if __name__ == '__main__':
     # 5 connected to: [4, 2]
     # 5 ---> 4
     # 5 ---> 2
-
-
-
