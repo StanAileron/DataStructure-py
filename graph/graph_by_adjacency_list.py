@@ -87,6 +87,9 @@ class Vertex:
         """获取当前顶点与顶点nbr连接的边的权重"""
         return self._connected_to[nbr]
 
+    def remove(self, v: "Vertex"):
+        del self._connected_to[v]
+
     def __str__(self):
         return " ".join([str(self._id), "connected to:", str([x.id for x in self._connected_to])])
 
