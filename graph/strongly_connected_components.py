@@ -45,7 +45,7 @@ class DFSGraphK(DFSGraph):
 def kosaraju(g: DFSGraphK):
     g.dfs()
 
-    # 已经转置了顶点对象，如vertex: [connected_vertex1, connexted_vertex2]
+    # 保存已经删除了的顶点对象之间的连接关系，如vertex: [connected_vertex1, connexted_vertex2]
     has_transport = {}
 
     # 对图进行转置
@@ -53,7 +53,8 @@ def kosaraju(g: DFSGraphK):
         connections = list(vertex.get_connections())
         # 遍历连接的所有顶点
         for connected_vertex in connections:
-            # 如果已经转置了 conncted_vertex 和 vertex 之间的连接，则跳转到循环
+            # 如果vertex在has_transport[connected_vertex]中，
+            # 说明已经将connected_vertex ---> vertex 转置为 vertex ---> connected_vertex，此时不能再转置。
             if has_transport.get(connected_vertex) is None or vertex not in has_transport[connected_vertex]:
                 vertex.remove(connected_vertex)
                 connected_vertex.add_neighbor(vertex)
