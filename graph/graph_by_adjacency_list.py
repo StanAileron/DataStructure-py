@@ -2,6 +2,7 @@
 # -*-coding:UTF-8-*-
 
 """使用邻接表实现图数据结构"""
+import sys
 from typing import Any, Dict, Optional, KeysView
 
 
@@ -12,10 +13,12 @@ class Vertex:
         self._id = key
 
         self._color = "White"  # 标记当前顶点是否已被探查（White: 表示还没有进行探索，Gray：表示发现了这个顶点，Black：表示完成了对这个顶点的探索）
-        self._distance = 0  # 记录当前顶点与起始顶点的距离
+        self._distance = 0  # 记录当前顶点与起始顶点路径长度（不带权重）
         self._pre_vertex: Optional[Vertex] = None  # 记录当前顶点的前驱顶点
 
         self._steps = 0  # 记录当前顶点的对应的步数（用于骑士周游算法）
+
+        self._dist = sys.maxsize  # 记录起始顶点到当前顶点的带权路径长度（用于Dijkstra算法）
 
         self._discovery = 0  # 记录在第几步访问到了这个顶点（用于带有通用dfs算法的图）
         self._finish = 0  # 记录在第几步完成了对这个顶点的探索（用于带有通用dfs算法的图）
@@ -74,6 +77,14 @@ class Vertex:
     @finish.setter
     def finish(self, step: int):
         self._finish = step
+
+    @property
+    def dist(self):
+        return self._dist
+
+    @dist.setter
+    def dist(self, dist: int):
+        self._dist = dist
 
     def add_neighbor(self, nbr: "Vertex", weight: int = 0):
         """建立当前顶点与顶点nbr的连接，并设置边的权重"""
