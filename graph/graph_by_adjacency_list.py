@@ -104,6 +104,9 @@ class Vertex:
     def __str__(self):
         return " ".join([str(self._id), "connected to:", str([x.id for x in self._connected_to])])
 
+    def __lt__(self, other: "Vertex"):
+        return self.dist < other.dist
+
 
 class Graph:
     """表示图对象"""
